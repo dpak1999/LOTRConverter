@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SelectCurrency: View {
     @Environment(\.dismiss) var dismiss
-    @State var leftCurrency: Currency
-    @State var rightCurrency: Currency
+    @State var topCurrency: Currency
+    @State var bottomCurrency: Currency
 
     var body: some View {
         ZStack {
@@ -26,7 +26,7 @@ struct SelectCurrency: View {
                     .fontWeight(.bold)
                 
                 // Currency icons
-                IconGrid(currency: leftCurrency)
+                IconGrid(currency: topCurrency)
                 
                 // Text
                 Text("Select the currency you would like to convert to:")
@@ -34,7 +34,7 @@ struct SelectCurrency: View {
                     .padding(.top)
                 
                 // Currency icons
-                IconGrid(currency: rightCurrency)
+                IconGrid(currency: bottomCurrency)
                 
                 // Done button
                 Button("Done") {
@@ -55,6 +55,6 @@ struct SelectCurrency: View {
 
 #Preview {
     SelectCurrency(
-        leftCurrency: .silverPenny,
-        rightCurrency: .goldPenny)
+        topCurrency: .silverPenny,
+        bottomCurrency: .goldPenny)
 }
