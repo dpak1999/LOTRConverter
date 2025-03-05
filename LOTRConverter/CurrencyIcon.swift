@@ -32,7 +32,6 @@ struct CurrencyIcon: View {
             .background(.brown)
             .clipShape(.rect(cornerRadius: 25))
         }
-        .padding()
         .multilineTextAlignment(.center)
     }
 }

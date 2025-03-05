@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SelectCurrency: View {
     @Environment(\.dismiss) var dismiss
+    @State var currency: Currency
+     
     
     var body: some View {
         ZStack {
@@ -27,11 +29,27 @@ struct SelectCurrency: View {
                 LazyVGrid(
                     columns: [GridItem(), GridItem(), GridItem()]
                 ) {
-                    ForEach(0..<5) {_ in
-                        CurrencyIcon(
-                            currencyImage: ImageResource.copperpenny,
-                            currencyName: "Copper Penny"
-                        )
+                    ForEach(Currency.allCases) { currency in
+                        if self.currency == currency {
+                            CurrencyIcon(
+                                currencyImage: currency.image,
+                                currencyName: currency.name
+                            )
+                            .shadow(color: .black, radius: 10)
+                            .overlay {
+                                RoundedRectangle(
+                                    cornerRadius: 25
+                                )
+                                .stroke(lineWidth: 3)
+                                .opacity(0.5)
+                                
+                            }
+                        } else {
+                            CurrencyIcon(
+                                currencyImage: currency.image,
+                                currencyName: currency.name
+                            )
+                        }
                     }
                 }
                 
@@ -53,11 +71,10 @@ struct SelectCurrency: View {
             }
             .padding()
             .multilineTextAlignment(.center)
-            
         }
     }
 }
 
 #Preview {
-    SelectCurrency()
+    SelectCurrency(currency: .silverPiece)
 }
